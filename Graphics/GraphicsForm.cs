@@ -73,7 +73,7 @@ namespace Graphics
             else if (delta < -2)
                 renderer.cam.Yaw(speed);
 
-            label1.Text = "Delta x: " + delta;
+            
 
             delta = e.Y - prevY;
             if (delta > 2)
@@ -81,7 +81,7 @@ namespace Graphics
             else if (delta < -2)
                 renderer.cam.Pitch(speed);
 
-            label2.Text = "Delta y: " + delta;
+            
             MoveCursor();
         }
 

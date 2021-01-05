@@ -160,3 +160,17 @@ E:\الكلية\Third Year\First Term\Graphics\Sections\Lab6 - Texture Mapping -
 E:\الكلية\Third Year\First Term\Graphics\Sections\Lab6 - Texture Mapping - Materials-20210102\Graphics Lab5 texture - complete code\Graphics Lab5 texture - complete code\Graphics\obj\Debug\Graphics.csproj.CopyComplete
 E:\الكلية\Third Year\First Term\Graphics\Sections\Lab6 - Texture Mapping - Materials-20210102\Graphics Lab5 texture - complete code\Graphics Lab5 texture - complete code\Graphics\obj\Debug\Graphics.exe
 E:\الكلية\Third Year\First Term\Graphics\Sections\Lab6 - Texture Mapping - Materials-20210102\Graphics Lab5 texture - complete code\Graphics Lab5 texture - complete code\Graphics\obj\Debug\Graphics.pdb
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\bin\Debug\Graphics.exe.config
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\bin\Debug\Graphics.exe
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\bin\Debug\Graphics.pdb
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\bin\Debug\GlmNet.dll
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\bin\Debug\GlmNet.pdb
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\bin\Debug\GlmNet.xml
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\obj\Debug\Graphics.csprojAssemblyReference.cache
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\obj\Debug\Graphics.GraphicsForm.resources
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\obj\Debug\Graphics.Properties.Resources.resources
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\obj\Debug\Graphics.csproj.GenerateResource.cache
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\obj\Debug\Graphics.csproj.CoreCompileInputs.cache
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\obj\Debug\Graphics.csproj.CopyComplete
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\obj\Debug\Graphics.exe
+E:\الكلية\Third Year\First Term\Graphics\Natural-Scene\Graphics\obj\Debug\Graphics.pdb

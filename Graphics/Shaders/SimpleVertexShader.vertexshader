@@ -10,13 +10,13 @@ uniform mat4 projection;
 uniform mat4 view;
 
 out vec3 fragColor;
-out vec2 Tex;
+//out vec2 Tex;
 
 void main(){
 
 	gl_Position =  projection*view*model * vec4(vertexPosition_modelspace,1);
 	fragColor = vertexColor;
-	Tex = vertexTex;
+	//Tex = vertexTex;
 }
 
 
