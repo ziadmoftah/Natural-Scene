@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Tao.OpenGl;
 using GlmNet;
 using System.IO;
-
 namespace Graphics
 {
     class Renderer
@@ -18,14 +17,9 @@ namespace Graphics
         int viewID;
         int projID;
         mat4 scaleMat;
-        
         mat4 ProjectionMatrix;
         mat4 ViewMatrix;
-
-
         public Camera cam;
-
-        
         Texture BackTexture;
         Texture BottomTexture;
         Texture FrontTexture;
@@ -50,7 +44,7 @@ namespace Graphics
                 // front
                 -1,1,1,     1,1,1,       0,1,
                 -1,-1,1,    1,1,1,       0,0,
-                -1,-1,-1,   1,1,1,       0,1,
+                -1,-1,-1,   1,1,1,       1,0,
 
                 -1,1,1,     1,1,1,       0,1,
                 -1,1,-1,    1,1,1,       1,1,
@@ -84,13 +78,13 @@ namespace Graphics
                 -1,-1,1,    1,1,1,       1,0,
 
                 //top
-                1,1,1,      0,0,0,       0,1,
-                -1,1,1,     0,0,0,       0,0,
-                -1,1,-1,    0,0,0,       1,0,
+                1,1,1,     0,0,0,       0,1,
+               -1,1,1,     0,0,0,       0,0,
+               -1,1,-1,    0,0,0,       1,0,
 
                 1,1,1,      0,0,0,       0,1,
                 1,1,-1,     0,0,0,       1,1,
-                -1,1,-1,    0,0,0,       1,0,
+               -1,1,-1,     0,0,0,       1,0,
 
                 //bottom
                 -1,-1,1,    0,0,0,       0,1,
@@ -103,21 +97,17 @@ namespace Graphics
             };
             vertexBufferID = GPU.GenerateBuffer(vertices);
             scaleMat = glm.scale(new mat4(1),new vec3(2f, 2f, 2.0f));
-
             cam = new Camera();
-            
             ProjectionMatrix = cam.GetProjectionMatrix();
             ViewMatrix = cam.GetViewMatrix();
-
             transID = Gl.glGetUniformLocation(sh.ID, "model");
             projID = Gl.glGetUniformLocation(sh.ID, "projection");
             viewID = Gl.glGetUniformLocation(sh.ID, "view");
-
         }
 
         public void Draw()
         {
-            Gl.glClear(Gl.GL_COLOR_BUFFER_BIT);
+            Gl.glClear(Gl.GL_COLOR_BUFFER_BIT | Gl.GL_DEPTH_BUFFER_BIT);
             sh.UseShader();
             Gl.glUniformMatrix4fv(transID, 1, Gl.GL_FALSE, scaleMat.to_array());
             Gl.glUniformMatrix4fv(projID, 1, Gl.GL_FALSE, ProjectionMatrix.to_array());

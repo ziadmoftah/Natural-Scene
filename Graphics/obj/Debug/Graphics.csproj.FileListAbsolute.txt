@@ -187,4 +187,3 @@ C:\Users\ahmed\OneDrive\Documents\GitHub\Natural-Scene\Graphics\obj\Debug\Graphi
 C:\Users\ahmed\OneDrive\Documents\GitHub\Natural-Scene\Graphics\obj\Debug\Graphics.csproj.CopyComplete
 C:\Users\ahmed\OneDrive\Documents\GitHub\Natural-Scene\Graphics\obj\Debug\Graphics.exe
 C:\Users\ahmed\OneDrive\Documents\GitHub\Natural-Scene\Graphics\obj\Debug\Graphics.pdb
-C:\Users\ahmed\OneDrive\Documents\GitHub\Natural-Scene\Graphics\obj\Debug\Graphics.csprojAssemblyReference.cache
