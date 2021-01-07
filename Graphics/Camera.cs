@@ -19,7 +19,7 @@ namespace Graphics
         mat4 mProjectionMatrix;
         public Camera()
         {
-            Reset(0, 0, 5, 0, 0, 0, 0, 1, 0);
+            Reset(0, 0, 0.4f, 0, 0, 0, 0, 1, 0);
             SetProjectionMatrix(45, 4 / 3, 0.1f, 100);
         }
 

@@ -12,7 +12,17 @@ namespace Graphics
     class Renderer
     {
         Shader sh;
-        uint vertexBufferID;
+        // skybox attributes
+        //----------------
+        uint skybox_vertexBufferID;
+        Texture skybox_BackTexture;
+        Texture skybox_BottomTexture;
+        Texture skybox_FrontTexture;
+        Texture skybox_LeftTexture;
+        Texture skybox_RightTexture;
+        Texture skybox_TopTexture;
+        //-----------------
+
         int transID;
         int viewID;
         int projID;
@@ -20,24 +30,20 @@ namespace Graphics
         mat4 ProjectionMatrix;
         mat4 ViewMatrix;
         public Camera cam;
-        Texture BackTexture;
-        Texture BottomTexture;
-        Texture FrontTexture;
-        Texture LeftTexture;
-        Texture RightTexture;
-        Texture TopTexture;
         public void Initialize()
         {
             string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName;
+            // skybox
+            //-----------------
             sh = new Shader(projectPath + "\\Shaders\\SimpleVertexShader.vertexshader", projectPath + "\\Shaders\\SimpleFragmentShader.fragmentshader");
-            FrontTexture = new Texture(projectPath + "\\Textures\\front1.png", 3);
-            BackTexture = new Texture(projectPath + "\\Textures\\back1.png", 4);
-            RightTexture = new Texture(projectPath + "\\Textures\\right1.png", 5);
-            LeftTexture = new Texture(projectPath + "\\Textures\\left1.png", 6);
-            TopTexture = new Texture(projectPath + "\\Textures\\top1.png", 7);
-            BottomTexture = new Texture(projectPath + "\\Textures\\bottom1.png", 8);
+            skybox_FrontTexture = new Texture(projectPath + "\\Textures\\front.jpg", 3);
+            skybox_BackTexture = new Texture(projectPath + "\\Textures\\back.jpg", 4);
+            skybox_RightTexture = new Texture(projectPath + "\\Textures\\right.jpg", 5);
+            skybox_LeftTexture = new Texture(projectPath + "\\Textures\\left.jpg", 6);
+            skybox_TopTexture = new Texture(projectPath + "\\Textures\\top.jpg", 7);
+            skybox_BottomTexture = new Texture(projectPath + "\\Textures\\bottom.jpg", 8);
             Gl.glClearColor(0, 0, 0.4f, 1);
-               float[] vertices =
+               float[] skybox_vertices =
                 {
                 //pos       //color     //uv
             
@@ -51,13 +57,13 @@ namespace Graphics
                 -1,-1,-1,   1,1,1,       1,0,
 
                 //back
-                1,1,-1,     1,1,1,       0,1,
-                1,-1,-1,    1,1,1,       0,0,
-                1,-1,1,     1,1,1,       1,0,
+                1,1,1,     1,1,1,       0,1,
+                1,-1,1,    1,1,1,       0,0,
+                1,-1,-1,   1,1,1,       1,0,
 
-                1,1,-1,     1,1,1,       0,1,
-                1,1,1,      1,1,1,       1,1,
-                1,-1,1,     1,1,1,       1,0,
+                1,1,1,     1,1,1,       0,1,
+                1,1,-1,    1,1,1,       1,1,
+                1,-1,-1,   1,1,1,       1,0,
 
                 //right
                 -1,1,-1,    1,1,1,       0,1,
@@ -78,24 +84,25 @@ namespace Graphics
                 -1,-1,1,    1,1,1,       1,0,
 
                 //top
-                1,1,1,     0,0,0,       0,1,
-               -1,1,1,     0,0,0,       0,0,
-               -1,1,-1,    0,0,0,       1,0,
+                1,1,1,      0,0,0,       0,1,
+                -1,1,1,     0,0,0,       0,0,
+                -1,1,-1,    0,0,0,       1,0,
 
                 1,1,1,      0,0,0,       0,1,
                 1,1,-1,     0,0,0,       1,1,
-               -1,1,-1,     0,0,0,       1,0,
+                -1,1,-1,    0,0,0,       1,0,
 
                 //bottom
-                -1,-1,1,    0,0,0,       0,1,
-                1,-1,1,     0,0,0,       0,0,
-                1,-1,-1,    0,0,0,       1,0,
+                -1,-1,-1,   0,0,0,       0,1,
+                -1,-1,1,    0,0,0,       0,0,
+                1,-1,1,     0,0,0,       1,0,
 
-                -1,-1,1,    0,0,0,       0,1,
-                -1,-1,-1,   0,0,0,       1,1,
-                1,-1,-1,    0,0,0,       1,0
+               -1,-1,-1,    0,0,0,       0,1,
+                1,-1,-1,   0,0,0,       1,1,
+                1,-1,1,    0,0,0,       1,0
             };
-            vertexBufferID = GPU.GenerateBuffer(vertices);
+            skybox_vertexBufferID = GPU.GenerateBuffer(skybox_vertices);
+            //----------------------
             scaleMat = glm.scale(new mat4(1),new vec3(2f, 2f, 2.0f));
             cam = new Camera();
             ProjectionMatrix = cam.GetProjectionMatrix();
@@ -112,7 +119,9 @@ namespace Graphics
             Gl.glUniformMatrix4fv(transID, 1, Gl.GL_FALSE, scaleMat.to_array());
             Gl.glUniformMatrix4fv(projID, 1, Gl.GL_FALSE, ProjectionMatrix.to_array());
             Gl.glUniformMatrix4fv(viewID, 1, Gl.GL_FALSE, ViewMatrix.to_array());
-            GPU.BindBuffer(vertexBufferID);
+            // draw skybox
+            //-----------------------
+            GPU.BindBuffer(skybox_vertexBufferID);
             Gl.glEnableVertexAttribArray(0);
             Gl.glVertexAttribPointer(0, 3, Gl.GL_FLOAT, Gl.GL_FALSE, 8 * sizeof(float), IntPtr.Zero);
             Gl.glEnableVertexAttribArray(1);
@@ -121,39 +130,39 @@ namespace Graphics
             Gl.glVertexAttribPointer(2, 2, Gl.GL_FLOAT, Gl.GL_FALSE, 8 * sizeof(float), (IntPtr)(6 * sizeof(float)));
 
             //front
-            FrontTexture.Bind();
+            skybox_FrontTexture.Bind();
             Gl.glDrawArrays(Gl.GL_TRIANGLES, 0, 3);
             Gl.glDrawArrays(Gl.GL_TRIANGLES, 3, 3);
 
             //back
-            BackTexture.Bind();
+            skybox_BackTexture.Bind();
             Gl.glDrawArrays(Gl.GL_TRIANGLES, 6, 3);
             Gl.glDrawArrays(Gl.GL_TRIANGLES, 9, 3);
 
             //right
-            RightTexture.Bind();
+            skybox_RightTexture.Bind();
             Gl.glDrawArrays(Gl.GL_TRIANGLES, 12, 3);
             Gl.glDrawArrays(Gl.GL_TRIANGLES, 15, 3);
 
             //left
-            LeftTexture.Bind();
+            skybox_LeftTexture.Bind();
             Gl.glDrawArrays(Gl.GL_TRIANGLES, 18, 3);
             Gl.glDrawArrays(Gl.GL_TRIANGLES, 21, 3);
 
             //top
-            TopTexture.Bind();
+            skybox_TopTexture.Bind();
             Gl.glDrawArrays(Gl.GL_TRIANGLES, 24, 3);
             Gl.glDrawArrays(Gl.GL_TRIANGLES, 27, 3);
 
             //bottom
-
-            BottomTexture.Bind();
+            skybox_BottomTexture.Bind();
             Gl.glDrawArrays(Gl.GL_TRIANGLES, 30, 3);
             Gl.glDrawArrays(Gl.GL_TRIANGLES, 33, 3);
 
             Gl.glDisableVertexAttribArray(0);
             Gl.glDisableVertexAttribArray(1);
             Gl.glDisableVertexAttribArray(2);
+            //-----------------------------
         }
         public void Update()
         {
