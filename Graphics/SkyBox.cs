@@ -66,12 +66,11 @@ namespace Graphics
             -1,-1,-1,   0,0,0,       1,1,
             1,-1,-1,    0,0,0,       1,0
         };
-        public Texture[] faces;
         public uint vertexbuffer;
-
-        public SkyBox()
+        SkyBox()
         {
             vertexbuffer = GPU.GenerateBuffer(vertices);
         }
     }
+    
 }
