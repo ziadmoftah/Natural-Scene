@@ -48,7 +48,7 @@ namespace Graphics
 
         private void simpleOpenGlControl1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            float speed = 0.3f;
+            float speed = 0.1f;
             if (e.KeyChar == 'a')
                 renderer.cam.Strafe(-speed);
             if (e.KeyChar == 'd')
@@ -66,14 +66,14 @@ namespace Graphics
         float prevX, prevY;
         private void simpleOpenGlControl1_MouseMove(object sender, MouseEventArgs e)
         {
-            float speed = 0.05f;
+            float speed = 0.03f;
             float delta = e.X - prevX;
             if (delta > 2)
                 renderer.cam.Yaw(-speed);
             else if (delta < -2)
                 renderer.cam.Yaw(speed);
 
-            label1.Text = "Delta x: " + delta;
+            
 
             delta = e.Y - prevY;
             if (delta > 2)
@@ -81,7 +81,7 @@ namespace Graphics
             else if (delta < -2)
                 renderer.cam.Pitch(speed);
 
-            label2.Text = "Delta y: " + delta;
+            
             MoveCursor();
         }
 

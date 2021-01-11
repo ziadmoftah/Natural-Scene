@@ -19,6 +19,7 @@ namespace Graphics
         public Texture(string path, int texUnit)
         {
             Bitmap bitmap = (Bitmap)Bitmap.FromFile(path);
+            //bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
             Rectangle rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
             BitmapData bitmapData = bitmap.LockBits(rect, ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
             width = bitmap.Width;
